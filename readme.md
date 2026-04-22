@@ -1,4 +1,6 @@
-# sbox cheat and cheat loader
+# s&box cheat and cheat loader
+
+
 
 ## setup (i recommend using linux or wsl2)
 - install dotnet 9 sdk
