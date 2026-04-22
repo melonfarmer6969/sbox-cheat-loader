@@ -22,3 +22,11 @@ then it just injects a little payload to load the actual dll.
 
 - native net loader (the first step, hijacks the thread then injects the payload)
 - net payload (loads the actual cheat (sbox mod))
+
+## fix ideas:
+- so first off, they probably updated the .net core version so u need to change the target to .net core 10 or whatever is current
+- i had it set up to stream the DLL from an api, so u need to change it to read the local file instead
+
+https://learn.microsoft.com/en-us/dotnet/core/tutorials/netcore-hosting 
+this API is made for devs to use in their own program, but since we're injecting a DLL we can just yoinky yoinky it.
+the docs are incomplete though but luckily this rust library already sorted it (if the library is outdated you need to go to https://github.com/dotnet/runtime/blob/main/src/native/corehost/hostfxr.h and then reverse the error codes (its not that hard)
