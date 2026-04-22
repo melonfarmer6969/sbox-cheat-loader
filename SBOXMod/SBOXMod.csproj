@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TargetFramework>net9.0-windows</TargetFramework>
+	  <RuntimeFrameworkVersion>9.0.8</RuntimeFrameworkVersion>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	  <DefineConstants>SANDBOX;ADDON;DEBUG</DefineConstants>
+	  <DesignTimeBuild Condition="'$(DesignTimeBuild)' == 'true'">true</DesignTimeBuild>
+	  <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	  <RazorCompileOnBuild>true</RazorCompileOnBuild>
+
+  <!-- Prevent satellite assemblies (language folders) -->
+  <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  
+  <!-- Prevent copying unnecessary DLLs -->
+  <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  	<ItemGroup>
+
+		<CompilerVisibleProperty Include="DesignTimeBuild" />
+		<None Update="**\*.cs.scss" DependentUpon="%(Filename)" />
+		<Compile Update="**\*.razor.cs" DependentUpon="%(Filename)" />
+		<None Update="**\*.razor.scss" DependentUpon="%(Filename)" />
+
+	</ItemGroup>
+
+  	<ItemGroup>
+		<AdditionalFiles Include="**/*.razor" Exclude="**\editor\**\*;**\unittest\**\*" />
+	</ItemGroup>
+
+  	<ItemGroup>
+		<Using Include="Sandbox.Internal.GlobalGameNamespace" Static="true" />
+		<Using Include="Microsoft.AspNetCore.Components" />
+		<Using Include="Microsoft.AspNetCore.Components.Rendering" />
+	</ItemGroup>
+
+  	<ItemGroup>
+		
+		<Analyzer Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed\Sandbox.CodeUpgrader.dll" />
+		<Analyzer Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed\Sandbox.Generator.dll" Condition="$(DesignTimeBuild) != 'true'" />
+		<Reference Include="Base Library" Private="false">
+		  <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\sbox\.vs\output\Base Library.dll</HintPath>
+		</Reference>
+
+<Reference Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed/Sandbox.System.dll" Private="false" />
+<Reference Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed/Sandbox.Engine.dll" Private="false" />
+<Reference Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed/Sandbox.Filesystem.dll" Private="false" />
+<Reference Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed/Sandbox.Reflection.dll" Private="false" />
+<Reference Include="C:\program files (x86)\steam\steamapps\common\sbox\bin\managed/Sandbox.Mounting.dll" Private="false" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <EmbeddedResource Update="ResourceFile.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ResourceFile.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+
+
+</Project>
