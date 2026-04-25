@@ -23,6 +23,12 @@ then it just injects a little payload to load the actual dll.
 - native net loader (the first step, hijacks the thread then injects the payload)
 - net payload (loads the actual cheat (sbox mod))
 
+# to reverse games
+this method will most likely be patched in the future but you can use
+https://github.com/chrisspieler/sbox-cll-extractor
+to get the code of a game, then u can use reflection to get access to the classes
+
+
 ## fix ideas:
 - so first off, they probably updated the .net core version so u need to change the target to .net core 10 or whatever is current
 - i had it set up to stream the DLL from an api, so u need to change it to read the local file instead
